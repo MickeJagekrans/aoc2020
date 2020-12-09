@@ -47,17 +47,7 @@ const validators = {
   'cid': () => true,
 };
 
-const fullyValid = valid.filter(entry => entry.every(([key, val]) => {
-  console.log(key, val);
-  console.log(validators[key]);
-  if (validators[key]) {
-    console.log(validators[key](val));
-  } else {
-    console.log(`Key not found: ${key}`);
-  }
-
-  return validators[key] && validators[key](val)
-}));
+const fullyValid = valid.filter(entry => entry.every(([key, val]) => validators[key] && validators[key](val)));
 
 console.log(fullyValid.length);
 
